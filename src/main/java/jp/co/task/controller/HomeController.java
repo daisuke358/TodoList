@@ -529,7 +529,6 @@ public class HomeController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String dateMealDelete(@ModelAttribute DateMealForm form, Model model) {
 	    int count = homeService.deleteDateMeal(form.getId());
-//	    Logger.getLogger(HomeController.class).log(Level.INFO, "削除件数は" + count + "件です。");
 	    return "forward:";
 	}
 
@@ -537,15 +536,6 @@ public class HomeController {
 	public String foodAllEdit(Model model, @RequestParam("day") String day) {
 		model.addAttribute("day", day);
 
-
-//	    Date d = new Date();
-//		Calendar thatday = Calendar.getInstance();
-//        thatday.setTime(day);
-//		thatday.add(Calendar.DAY_OF_MONTH, );
-//		String thatdayA = new SimpleDateFormat("yyyy-MM-dd").format(day.getTime());
-//        String thatdayB = new SimpleDateFormat("yyyy年MM月dd日").format(day.getTime());
-//        model.addAttribute("thatDayB", thatdayB);
-//        model.addAttribute("thatdayA", thatdayA);
 		TaskDto user = homeService.getTask(1);
         model.addAttribute("user", user);
 	    List<FoodDto> foods =homeService.getFoodAll();
@@ -596,77 +586,4 @@ public class HomeController {
         model.addAttribute("carboPer", carboPer);
 	    return "foodAllEdit";
 	}
-
-
-
-
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String taskAll(Model model) {
-//	    List<TaskDto> tasks = homeService.getTaskAll();
-//	    model.addAttribute("tasks", tasks);
-//	    TaskForm form = new TaskForm();
-//	    model.addAttribute("taskForm", form);
-//	    return "home";
-//	}
-
-//	@RequestMapping(value = "/", method = RequestMethod.POST, produces="text/plain;charset=utf-8")
-//	public String taskInsert(@Valid @ModelAttribute TaskForm form, BindingResult result, Model model) {
-//		if (result.hasErrors()) {
-//			model.addAttribute("message", "エラーが発生しました");
-//			List<TaskDto> tasks = homeService.getTaskAll();
-//		    model.addAttribute("tasks", tasks);
-//			return "home";
-//	    }else {
-//	    int count = homeService.insertTask(form.getTask(), form.getProgress(), form.getPriority());
-//	    Logger.getLogger(HomeController.class).log(Level.INFO, "挿入件数は" + count + "件です。");
-//	    return "redirect:/";
-//	    }
-//	}
-//
-//	@RequestMapping(value = "delete", method = RequestMethod.POST)
-//	public String taskDelete(@ModelAttribute TaskForm form, Model model) {
-//	    int count = homeService.deleteTask(form.getId());
-//	    Logger.getLogger(HomeController.class).log(Level.INFO, "削除件数は" + count + "件です。");
-//	    return "redirect:/";
-//	}
-//
-//	@RequestMapping(value = "/update/{id}/", method = RequestMethod.GET)
-//	public String taskUpdate(Model model, @PathVariable int id) {
-//	    TaskDto task = homeService.getTask(id);
-//	    model.addAttribute("task", task);
-//	    TaskForm formUpdate = new TaskForm();
-//	    formUpdate.setId(task.getId());
-//	    formUpdate.setTask(task.getTask());
-//	    formUpdate.setProgress(task.getProgress());
-//	    formUpdate.setPriority(task.getPriority());
-//	    model.addAttribute("formUpdate", formUpdate);
-//
-//	    List<TaskDto> tasks = homeService.getTaskAll();
-//	    model.addAttribute("tasks", tasks);
-//	    TaskForm form = new TaskForm();
-//	    model.addAttribute("taskForm", form);
-//	    return "update";
-//	}
-//
-//	@RequestMapping(value = "/update/{id}/", method = RequestMethod.POST)
-//	public String taskUpdate(@Valid @ModelAttribute TaskForm form, BindingResult result, Model model) {
-//
-//	    if (result.hasErrors()) {
-//	        model.addAttribute("message", result);
-//	        model.addAttribute("taskForm", form);
-//	    }else {
-//	    	TaskDto dto = new TaskDto();
-//		    BeanUtils.copyProperties(form, dto);
-//		    int count = homeService.updateTask(form.getId(), form.getTask(), form.getProgress(), form.getPriority());
-//		    Logger.getLogger(HomeController.class).log(Level.INFO, "更新件数は" + count + "件です。");
-//	    }
-//	    return "redirect:/";
-//
-//	}
-//	@RequestMapping(value = "progressUpdate", method = RequestMethod.POST)
-//	public String progressUpdate(@ModelAttribute TaskForm form, Model model) {
-//	    int count = homeService.progressUpdate(form.getId(), form.getProgress());
-//	    Logger.getLogger(HomeController.class).log(Level.INFO, "削除件数は" + count + "件です。");
-//	    return "redirect:/";
-//	}
 }
