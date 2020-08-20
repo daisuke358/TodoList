@@ -2,21 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jp.co.task.mapper.TaskMapper">
+
+
     <resultMap id="TaskResult" type="jp.co.task.entity.Task">
         <result column="id" property="id" />
-        <result column="task" property="task" />
+        <result column="name" property="name" />
     </resultMap>
 	<select id="getTask" resultMap="TaskResult" parameterType="int">
-        select id, task, progress, priority
-        from lists
+        select id, name
+        from user
         where id = #{id}
     </select>
-    <select id="getTaskAll" resultMap="TaskResult">
+
+    <insert id="insertFood" parameterType="String">
+	    insert into food(name, protein, fat, carbo, per) values (#{name}, #{protein}, #{fat}, #{carbo}, #{per})
+	</insert>
+	<insert id="insertDateMeal" parameterType="String">
+	    insert into date_meal(food_id, meal_quantity, date) values (#{id}, #{meal_quantity}, #{c1})
+	</insert>
+	<resultMap id="FoodResult" type="jp.co.task.entity.Food">
+        <result column="id" property="id" />
+      	<result column="name" property="name" />
+        <result column="protein" property="protein" />
+        <result column="fat" property="fat" />
+        <result column="carbo" property="carbo" />
+        <result column="per" property="per" />
+    </resultMap>
+	<select id="getFoodAll" resultMap="FoodResult">
+	    select id, name, protein, fat, carbo, per
+	    from food
+	</select>
+
+	<resultMap id="DateMealResult" type="jp.co.task.entity.DateMeal">
+        <result column="id" property="id" />
+      	<result column="food_id" property="food_id" />
+        <result column="meal_quantity" property="meal_quantity" />
+        <result column="date" property="date" />
+        <result column="created_date" property="created_date" />
+    </resultMap>
+	<select id="getDateMealAll" resultMap="DateMealResult">
+	    select id, food_id, meal_quantity, date, created_date
+	    from date_meal
+	</select>
+	<delete id="deleteDateMeal" parameterType="int">
+	    delete from date_meal where id = #{id}
+	</delete>
+
+
+
+
+
+<!--     <select id="getTaskAll" resultMap="TaskResult">
 	    select id, task, progress, priority
 	    from lists
 	    ORDER BY priority ASC,
 	    updated_date DESC
-	</select>
+	</select> -->
 	<insert id="insertTask" parameterType="String">
     	insert into lists(task, progress, priority) values (#{task}, #{progress}, #{priority})
 	</insert>

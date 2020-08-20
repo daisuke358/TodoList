@@ -1,60 +1,18 @@
 @charset "UTF-8";
-
-.text-center{
-	 font-size: 20px;
-    font-family: "serif";
+.button {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 8pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 4px 4px;   /* 余白       */
+  background    : rgba(153, 0, 0, 0.76);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid rgba(153, 0, 0, 0.76);    /* 枠の指定 */
 }
-
-table.table01 {
-	width:100%;
-	border-right:#3EB1C6 solid 1px;
-	border-collapse: collapse;
-}
-table.table01 thead th {
-	background:#3EB1C6;
-	color:#FFF;
-	padding:10px 15px;
-	border-right:#FFF solid 1px;
-	border-bottom:#FFF solid 1px;
-}
-table.table01 thead th:last-child {
-	border-right:#3EB1C6 solid 1px;
-}
-table.table01 tbody th {
-	background:#3EB1C6;
-	color:#FFF;
-	padding:10px 15px;
-	border-bottom:#FFF solid 1px;
-	vertical-align:top;
-}
-table.table01 tbody tr:last-child th {
-	border-bottom:#3EB1C6 solid 1px;
-}
-table.table01 tbody td {
-	background:#FFF;
-	padding:10px 15px;
-	border-left:#3EB1C6 solid 1px;
-	border-bottom:#3EB1C6 solid 1px;
-	vertical-align:top;
-}
-
-@media screen and (max-width: 640px) {
-table.table01 thead {
-	display:none;
-}
-table.table01 tbody th {
-	display:block;
-}
-table.table01 tbody td {
-	display:block;
-}
-table.table01 tbody td::before {
-	content: attr(label);
-	float: left;
-	clear:both;
-	font-weight:bold;
-}
-table.table01 tbody td p {
-	padding-left:6em;
-}
+.button:hover {
+  color         : rgba(153, 0, 0, 0.76);     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
 }
